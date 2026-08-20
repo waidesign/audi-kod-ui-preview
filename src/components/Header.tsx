@@ -102,6 +102,17 @@ export default function Header({ currentView = 'home', onNavigate, onOpenSampleM
             >
               Sample Sticker
             </button>
+
+            <button
+              onClick={() => onNavigate?.('blog')}
+              className={`cursor-pointer px-3.5 py-1.5 rounded-xs text-xs font-bold transition-colors ${
+                currentView === 'blog' || currentView === 'blog-post'
+                  ? 'bg-brand-black text-brand-white font-extrabold shadow-xs'
+                  : 'text-grey-700 hover:text-brand-black hover:bg-grey-50'
+              }`}
+            >
+              Blog
+            </button>
           </nav>
         </div>
 

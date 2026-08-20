@@ -19,12 +19,29 @@ import VinLocationModal from './components/VinLocationModal';
 import SampleStickerModal from './components/SampleStickerModal';
 import AuthPage from './components/AuthPage';
 import MsrpByVinPage from './components/MsrpByVinPage';
+import BlogLanding from './components/BlogLanding';
+import BlogPost from './components/BlogPost';
 import { AppView } from './types';
 
 export default function App() {
   const [currentView, setCurrentView] = useState<AppView>('home');
+  const [selectedPostSlug, setSelectedPostSlug] = useState<string | null>(null);
   const [isVinModalOpen, setIsVinModalOpen] = useState(false);
   const [isSampleModalOpen, setIsSampleModalOpen] = useState(false);
+
+  React.useEffect(() => {
+    const handleSelectPostEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail) {
+        setSelectedPostSlug(customEvent.detail);
+        setCurrentView('blog-post');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+    window.addEventListener('select-post', handleSelectPostEvent);
+    return () => window.removeEventListener('select-post', handleSelectPostEvent);
+  }, []);
+
 
   const handleNavigate = (view: AppView) => {
     setCurrentView(view);
@@ -54,6 +71,20 @@ export default function App() {
               onOpenVinModal={() => setIsVinModalOpen(true)} 
               onOpenSampleModal={() => setIsSampleModalOpen(true)}
               onNavigate={handleNavigate}
+            />
+          ) : currentView === 'blog' ? (
+            <BlogLanding 
+              onNavigate={handleNavigate}
+              onSelectPost={(slug) => {
+                setSelectedPostSlug(slug);
+                handleNavigate('blog-post');
+              }}
+            />
+          ) : currentView === 'blog-post' ? (
+            <BlogPost 
+              postSlug={selectedPostSlug}
+              onNavigate={handleNavigate}
+              onOpenVinModal={() => setIsVinModalOpen(true)}
             />
           ) : (
             <>

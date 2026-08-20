@@ -25,6 +25,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             <li><button onClick={() => onNavigate?.('msrp')} className="hover:text-brand-white transition-colors text-left cursor-pointer">Options & Pricing Breakdown</button></li>
             <li><button onClick={() => onNavigate?.('home')} className="hover:text-brand-white transition-colors text-left cursor-pointer">Where to find VIN</button></li>
             <li><button onClick={() => onNavigate?.('msrp')} className="hover:text-brand-white transition-colors text-left cursor-pointer">MSRP FAQ</button></li>
+            <li><button onClick={() => onNavigate?.('blog')} className="hover:text-brand-white transition-colors text-left cursor-pointer">Blog Insights</button></li>
           </ul>
         </div>
         <div>
