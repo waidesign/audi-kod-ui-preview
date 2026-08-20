@@ -1,0 +1,7 @@
+{
+  "name": "Audi Window Sticker & MSRP by VIN",
+  "description": "Instant factory Audi Monroney window sticker lookup and complete MSRP price breakdown by VIN or license plate.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
